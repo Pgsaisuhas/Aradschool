@@ -1,1 +1,1 @@
-# Aradschool
+# Aradhana School of Dance
