@@ -36,7 +36,8 @@ class LoginView(APIView):
 
             'exp': datetime.datetime.now(datetime.UTC)+ datetime.timedelta (minutes=68),
 
-            'iat': datetime.datetime.now(datetime.UTC)}
+            'iat': datetime.datetime.now(datetime.UTC)
+        }
 
         
         token = jwt.encode(payload, 'secret', algorithm='HS256')
@@ -76,6 +77,21 @@ class LogoutView(APIView):
         'message': 'logout success'}
 
         return response
+
+class DeleteAccountView(APIView):
+
+    def delete(self, request):
+       
+        token = request.COOKIES.get('jwt')
+        if not token:
+            raise AuthenticationFailed('Unauthenticated!')
+        try:
+            payload = jwt.decode(token, 'secret', algorithms=['HS256'])
+        except jwt.ExpiredSignatureError:
+            raise AuthenticationFailed('Unauthenticated!')
+        user = CustomeUser.objects.filter(id=payload['id']).first()
+        user.delete()
+        return Response({'message': 'Account deleted successfully'}, status=status.HTTP_200_OK)
 # @api_view(['POST'])
 # @permission_classes([AllowAny])
 # def user_reg(request):
