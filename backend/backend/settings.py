@@ -28,6 +28,13 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:5173',
+    'http://localhost',
+    'http://127.0.0.1',
+    'http://0.0.0.0',
+]
+
 
 # Application definition
 
@@ -38,7 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'user_reg',
+    'user_reg.apps.UserRegConfig',
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders'
@@ -63,12 +70,19 @@ AUTH_USER_MODEL = 'user_reg.CustomeUser'
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+
+# JWT_AUTH_COOKIE = 'jwt_auth_token'
+# JWT_AUTH_REFRESH_COOKIE = 'jwt_refresh_token'
 
 ROOT_URLCONF = "backend.urls"
 
@@ -160,6 +174,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = "/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

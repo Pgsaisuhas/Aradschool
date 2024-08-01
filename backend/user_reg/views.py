@@ -1,3 +1,4 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from .serializers import UserSerializer
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -25,10 +26,16 @@ class LoginView(APIView):
         user = CustomeUser.objects.filter(email=email).first()
 
         if user is None:
-            raise AuthenticationFailed("User not found!")
+            return JsonResponse({
+                "error": "User not found!",
+                "allow_retry": True
+            }, status=status.HTTP_400_BAD_REQUEST)
 
         if not user.check_password(password):
-            raise AuthenticationFailed("Incorrect password!")
+            return JsonResponse({
+                "error": "Incorrect password!",
+                "allow_retry": True
+            }, status=status.HTTP_400_BAD_REQUEST)
         
         payload = {
 
