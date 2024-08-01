@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-
+import ssl
+from django.core.mail import get_connection
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +40,7 @@ CORS_ALLOWED_ORIGINS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -48,7 +50,10 @@ INSTALLED_APPS = [
     'user_reg.apps.UserRegConfig',
     'rest_framework',
     'rest_framework.authtoken',
-    'corsheaders'
+    'corsheaders',
+    'feedback.apps.FeedbackConfig',
+    'admin_interface',
+    'colorfield',
 
 ]
 AUTH_USER_MODEL = 'user_reg.CustomeUser'
@@ -126,19 +131,17 @@ DATABASES = {
         'default': 
         {
         'ENGINE': 'django_cockroachdb',
-        'NAME': 'aradana',
-        'USER': 'samanth',
-        'PASSWORD': 'c2SeDPoZixATrLmGQvLrWg',
-        'HOST': 'honest-tadpole-15332.8nj.gcp-europe-west1.cockroachlabs.cloud',
+        'NAME': 'defaultdb',
+        'USER': 'aradana',
+        'PASSWORD': 'UJVxT1-G5P3BjMKfFhsptA',
+        'HOST': 'deft-shrimp-5647.7s5.aws-ap-south-1.cockroachlabs.cloud',
         'PORT': '26257',
         'OPTIONS': {
             'sslmode': 'verify-full',
             'sslrootcert': os.path.expandvars(r'root.crt'),
         },
     },}
-
-
-
+# UJVxT1-G5P3BjMKfFhsptA
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -180,3 +183,4 @@ STATIC_ROOT = "/static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
