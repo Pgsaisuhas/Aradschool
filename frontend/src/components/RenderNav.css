@@ -1,0 +1,61 @@
+/* Navbar container */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #263238;
+  padding: 10px 20px;
+  color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* School name */
+.navbar .name {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+/* Menu container */
+.navbar .menu {
+  display: flex;
+  gap: 15px;
+}
+
+/* Menu item */
+.menuItem {
+  position: relative;
+}
+
+/* Menu links */
+.menuItem a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menuItem a:hover {
+  background-color: #182637;
+  color: #0073ff;
+}
+
+/* Dropdown for authentication links */
+.menuItem .auth-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar .menu {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

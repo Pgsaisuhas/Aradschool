@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'feedback.apps.FeedbackConfig',
-    'admin_interface',
-    'colorfield',
+    # 'admin_interface',
+    # 'colorfield',
 
 ]
 AUTH_USER_MODEL = 'user_reg.CustomeUser'

@@ -1,7 +1,7 @@
 import { Link, Route, Routes, Navigate } from "react-router-dom";
 import { nav } from "./Navigation";
 import { AuthData } from "../auth/AuthWrapper";
-
+import "./RenderNav.css"
 
 
 export const RenderRoutes = () => {
@@ -44,28 +44,31 @@ export const RenderMenu = () => {
 	);
 
 	return (
-		<div className="menu">
-			{nav.map((r, i) => {
-				if (!r.isPrivate && r.isMenu) {
-					return <MenuItem key={i} r={r} />;
-				} else if (user && r.isMenu) {
-					return <MenuItem key={i} r={r} />;
-				} else return null;
-			})}
+		<div className="navbar">
+			<div className="name">Aradhana School of Dance</div>
+			<div className="menu">
+				{nav.map((r, i) => {
+					if (!r.isPrivate && r.isMenu) {
+						return <MenuItem key={i} r={r} />;
+					} else if (user && r.isMenu) {
+						return <MenuItem key={i} r={r} />;
+					} else return null;
+				})}
 
-			{user ? (
-				<div className="menuItem">
-					<Link to="/login" onClick={handleLogout}>
-						Log out
-					</Link>
-				</div>
-			) : (
-				<div className="menuItem">
-					<Link to="/register">Register</Link>
-					<br />
-					<Link to="/login">Log in</Link>
-				</div>
-			)}
+				{user ? (
+					<div className="menuItem">
+						<Link to="/login" onClick={handleLogout}>
+							Log out
+						</Link>
+					</div>
+				) : (
+					<div className="menuItem auth-links">
+						<Link to="/register">Register</Link>
+						{/* <br /> */}
+						<Link to="/login">Log in</Link>
+					</div>
+				)}
+			</div>
 		</div>
 	);
 };

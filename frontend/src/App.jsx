@@ -4,7 +4,7 @@ import { AuthWrapper } from './auth/AuthWrapper';
 import './App.css'
 import { Login } from './components/pages/Login';
 import { RenderMenu, RenderRoutes } from './components/RenderNavigation';
-
+import Footer from './components/Footer';
 function App() {
 
   return (
@@ -13,6 +13,7 @@ function App() {
 				<AuthWrapper>
 				</AuthWrapper>
 			</BrowserRouter>
+			<Footer />
 		</>
 	);
 }

@@ -3,6 +3,8 @@ import axios from "axios";
 import { RenderMenu, RenderRoutes } from "../components/RenderNavigation";
 import { api } from "./api";
 import { Login } from "../components/pages/Login";
+import ImageSlider from "../components/pages/ImageSlider";
+import Home from "../components/pages/Home";
 const AuthContext = createContext();
 export const AuthData = () => useContext(AuthContext);
 
@@ -134,10 +136,12 @@ export const AuthWrapper = () => {
 				value={{ user, userData, error, handleRegister, handleLogin, handleLogout, handleDeleteAccount }}
 			>
 				{/* {Children} */}
-				<h1>Authentication Demo</h1>
+				{/* <h1>Authentication Demo</h1> */}
 				{/* <Login /> */}
 				<RenderMenu />
 				<RenderRoutes />
+				{/* <ImageSlider /> */}
+				{/* <Home /> */}
 			</AuthContext.Provider>
 		);
 };
